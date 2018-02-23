@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LanguageFunc : MonoBehaviour {
+public class LanguageFunc : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Stack<object> stack;
+    Queue<object> queue;
+
+    //SortedXXX
+    class exampleCompare : IComparer<int>
+    {
+        public int Compare(int x, int y)
+        {
+            return -x.CompareTo(y);
+        }
+    }
+    SortedDictionary<int, string> sortedDictionary = new SortedDictionary<int, string>(new exampleCompare());
+
+    [ContextMenu("ssss")]
+    public void ssss()
+    {
+
+    }
+
 }

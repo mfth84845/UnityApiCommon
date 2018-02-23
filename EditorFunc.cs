@@ -8,8 +8,8 @@ using AttributeTargets = System.AttributeTargets;
 using UnityEditor;
 using ReorderableList = UnityEditorInternal.ReorderableList;
 
-[CustomEditor(typeof(EditorFunc))]
-public class EditorFuncEditor : Editor
+[CustomEditor(typeof(EditorFuncClass))]
+public class EditorFuncClassEditor : Editor
 {
 
     ReorderableList l;
@@ -101,6 +101,38 @@ public class ExampleWindow : UnityEditor.EditorWindow
     }
 }
 
+public class ExampleWizard : ScriptableWizard
+{
+    public string needName = "input info";
+    public Mesh mesh;
+
+    [MenuItem("Example/ExampleWizard1")]
+    static void Launch()
+    {
+        ScriptableWizard.DisplayWizard<ExampleWizard>("example Wizard", "createButtonHere");
+    }
+
+    private void OnWizardCreate()
+    {
+        var v = mesh.vertices;
+        for (int i = 0; i < v.Length; i++)
+        {
+            v[i] += Vector3.right;
+        }
+        mesh.vertices = v;
+        mesh.RecalculateBounds();
+    }
+}
+
+public class ExampleCommonFuncs
+{
+    [MenuItem("Example/Dialog")]
+    static void Dialog()
+    {
+        EditorUtility.DisplayDialog("", "ExampleDiaLog", "Fin");
+    }
+}
+
 #endif
 [System.Serializable]
 public struct ExampleProp
@@ -120,7 +152,7 @@ public class ExampleAttribute : UnityEngine.PropertyAttribute
 }
 
 
-public class EditorFunc : MonoBehaviour
+public class EditorFuncClass : MonoBehaviour
 {
     public ExampleProp propCustom;
     [Example("TryUse[ExampleAttribute1]")]

@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonoFunc : MonoBehaviour {
+public class MonoFunc : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+}
+[CreateAssetMenu(fileName = "aa", menuName = "aa")]
+public class ExampleScriptableObject : ScriptableObject
+{
+#if UNITY_EDITOR
+    [UnityEditor.MenuItem("Example/Take Screenshot of Game View %^s")]
+    static void TakeScreenshot()
+    {
+        ScreenCapture.CaptureScreenshot(Application.dataPath + "/SSSS.png");
+    }
+#endif
+
 }
